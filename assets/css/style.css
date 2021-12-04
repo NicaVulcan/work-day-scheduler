@@ -22,8 +22,13 @@ body {
   }
   
   .description{
+    display: flex;
     white-space: pre-wrap;
     height: 100%;
+  }
+
+  .textarea {
+    width: 100%;
   }
   
   .time-block{

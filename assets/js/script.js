@@ -7,22 +7,19 @@ $("#currentDay").text(currentDay);
 // Change background color of time block based on current time
 var currentHour = now.format("k");
 // Create array with each event block
-var eventBlock = document.querySelectorAll(".description");
+var eventBlock = $(".description");
 var auditTimeBlock = function () {
     for (var i = 0; i < eventBlock.length; i++) {
-        var eventBlockTime = eventBlock[i].dataset.time;     
-        if(currentHour > eventBlockTime) {
+        var eventBlockTime = eventBlock[i].dataset.time;
+        if (currentHour > eventBlockTime) {
             eventBlock[i].classList.add("past");
-            console.log("this is past. it is " + eventBlockTime);
-        } else if(currentHour === eventBlockTime) {
+        } else if (currentHour === eventBlockTime) {
             eventBlock[i].classList.add("present");
-            console.log("this is present. it is " + eventBlockTime);
         } else {
             eventBlock[i].classList.add("future");
-            console.log("this is future. it is " + eventBlockTime);
         }
     };
-}
+};
 
 // setInterval(function(){
 //     $(".description").each(function(index,el) {
@@ -33,7 +30,38 @@ var auditTimeBlock = function () {
 auditTimeBlock();
 
 // Change event description box into editable input field when clicked
+$(".description").click(function(){
+    var eventEl = $(this).children();
+    var eventText = $("<textarea>").addClass("textarea");
+    console.log(eventEl);
+    console.log(eventText);
+    eventEl.replaceWith(eventText);
+
+    eventText.trigger("focus");
+});
 
 
 
+// $(".list-group").on("blur", "textarea", function () {
+//     var text = $(this)
+//         .val()
+//         .trim();
 
+//     var status = $(this)
+//         .closest(".list-group")
+//         .attr("id")
+//         .replace("list-", "");
+
+//     var index = $(this)
+//         .closest(".list-group-item")
+//         .index();
+
+//     tasks[status][index].text = text;
+//     saveTasks();
+
+//     var taskP = $("<p>")
+//         .addClass("m-1")
+//         .text(text);
+
+//     $(this).replaceWith(taskP);
+// });
