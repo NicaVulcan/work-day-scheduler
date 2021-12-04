@@ -33,12 +33,19 @@ auditTimeBlock();
 $(".description").click(function(){
     var eventEl = $(this).children();
     var eventText = $("<textarea>").addClass("textarea");
-    console.log(eventEl);
-    console.log(eventText);
     eventEl.replaceWith(eventText);
 
     eventText.trigger("focus");
 });
+
+// Save event and turn description back into p element when save button clicked
+$(".saveBtn").click(function(){
+    var eventEl = $(this).prev(".description").children(".textarea");
+    var eventText = eventEl.val().trim();
+    var eventP = $("<p>").addClass("event").text(eventText);
+    eventEl.replaceWith(eventP);
+});
+
 
 
 

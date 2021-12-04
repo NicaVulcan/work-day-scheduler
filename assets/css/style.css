@@ -20,6 +20,11 @@ body {
     border-radius: 0;
     border-bottom: 10px solid black;
   }
+
+  .time-block{
+    text-align: center;
+    border-radius: 15px;
+  }
   
   .description{
     display: flex;
@@ -29,6 +34,14 @@ body {
 
   .textarea {
     width: 100%;
+  }
+
+  .event {
+    max-height: min-content;
+    max-width: 100%;
+    padding: 20px;
+    color: black;
+    justify-content: left;
   }
   
   .time-block{
