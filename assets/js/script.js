@@ -1,4 +1,5 @@
 var now = moment();
+var eventsArr;
 
 // Show current date at top
 var currentDay = now.format("[Today is] dddd, MMMM Do, YYYY");
@@ -6,11 +7,11 @@ $("#currentDay").text(currentDay);
 
 // Change background color of time block based on current time
 var currentHour = now.format("k");
-// Create array with each event block
+// Create array with each event block, check time for each event block
 var eventBlock = $(".description");
 var auditTimeBlock = function () {
     for (var i = 0; i < eventBlock.length; i++) {
-        var eventBlockTime = eventBlock[i].dataset.time;
+        var eventBlockTime = parseInt(eventBlock[i].dataset.time);
         if (currentHour > eventBlockTime) {
             eventBlock[i].classList.add("past");
         } else if (currentHour === eventBlockTime) {
@@ -21,12 +22,12 @@ var auditTimeBlock = function () {
     };
 };
 
+// 
 // setInterval(function(){
 //     $(".description").each(function(index,el) {
-//       auditTask(el);
+//         auditTimeBlock();
 //     });
-//   },1800000)
-
+//   },5000)
 auditTimeBlock();
 
 // Change event description box into editable input field when clicked
@@ -44,31 +45,29 @@ $(".saveBtn").click(function(){
     var eventText = eventEl.val().trim();
     var eventP = $("<p>").addClass("event").text(eventText);
     eventEl.replaceWith(eventP);
+
+    eventsArr = JSON.parse(localStorage.getItem("eventData")) || [];
+
+    // Create object to save event info to local storage
+    var eventObj = {
+        hour: $(this).prev(".description").attr("data-time"), 
+        event: eventText
+    };
+    
+    eventsArr.push(eventObj);
+    saveEvent();
 });
 
+// Load events from local storage
+var loadEvents = function () {
+    eventsArr = JSON.parse(localStorage.getItem("eventsArr")) || [];
+};
+
+// Save event info to local storage
+var saveEvent = function(text) {
+    localStorage.setItem("eventData", JSON.stringify(eventsArr));
+};
 
 
+loadEvents();
 
-// $(".list-group").on("blur", "textarea", function () {
-//     var text = $(this)
-//         .val()
-//         .trim();
-
-//     var status = $(this)
-//         .closest(".list-group")
-//         .attr("id")
-//         .replace("list-", "");
-
-//     var index = $(this)
-//         .closest(".list-group-item")
-//         .index();
-
-//     tasks[status][index].text = text;
-//     saveTasks();
-
-//     var taskP = $("<p>")
-//         .addClass("m-1")
-//         .text(text);
-
-//     $(this).replaceWith(taskP);
-// });
