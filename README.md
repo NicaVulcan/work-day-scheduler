@@ -13,7 +13,7 @@ A website that serves as a daily work planner and allows the user to add and sav
 
 ## Website
 https://nicavulcan.github.io/work-day-scheduler/
-![image coming soon]()
+![image of work day scheduler app](assets/images/workday-scheduler.png)
 
 ## Contribution
 Created by CSM
