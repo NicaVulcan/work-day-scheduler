@@ -23,7 +23,7 @@ $(document).ready(function () {
         };
     };
 
-    // Audit time blocks for color code every 5 minutes
+    // Audit time blocks for color code every 10 minutes
     setInterval(function(){
             auditTimeBlock();
       },600000)
@@ -55,7 +55,6 @@ $(document).ready(function () {
         for (var i = 8; i < 18; i++) {
             var selectEventBlock = $("[data-time=" + i + "]");
             selectEventBlock.children(".event").text(localStorage.getItem(i));
-            console.log(selectEventBlock.val);
         }
     };
 
